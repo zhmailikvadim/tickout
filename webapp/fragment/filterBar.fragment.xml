@@ -1,0 +1,359 @@
+<core:FragmentDefinition
+		xmlns:vhd="sap.ui.comp.valuehelpdialog"
+		xmlns:core="sap.ui.core"
+		xmlns:fb="sap.ui.comp.filterbar"
+		xmlns:zlib="by.mda.bn.z_ehs_library_1"
+		xmlns="sap.m"
+		xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<fb:FilterBar 
+			useToolbar="false"
+			search="onSearch"
+			filtersDialogCancel="onCancel"
+			showRestoreButton="false"
+			filterBarExpanded="true"
+            showClearOnFB="true"
+            clear="onClearFilter"
+			filtersDialogBeforeOpen="handelFilterDialogOpen">
+		<fb:filterGroupItems>
+			<fb:FilterGroupItem
+					groupName="firstGroup"
+					name="CREATE_DATA"
+					label="{i18n>CREATE_DATA}"
+					visibleInFilterBar="true">
+				<fb:control>
+					<zlib:MultiInput 
+							valueHelpTitle="{i18n>CREATE_DATA}"
+							valueHelpKey="CREATE_DATA"
+							valueHelpKeyType="date"
+							rangesOnly="true"
+							valueHelpDescriptionKey="{i18n>CREATE_DATA}"
+							beforeOpen="._prepareSelectionModel"
+							listPath="/CREATE_DATA"
+							tokensBindingInfo="{
+								modelName: 'filterModel',
+								bindingPath: '/CREATE_DATA'
+							}">
+					</zlib:MultiInput>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem
+					groupName="firstGroup"
+					name="ID"
+					label="{i18n>ID}"
+					visibleInFilterBar="true">
+				<fb:control>
+					<zlib:MultiInput 
+							valueHelpTitle="{i18n>ID}"
+							valueHelpKey="ID"
+							valueHelpKeyType="string"
+							valueHelpDescriptionKey="{i18n>ID}"
+							beforeOpen="._prepareSelectionModel"
+							listPath="/ID"
+							tokensBindingInfo="{
+								modelName: 'filterModel',
+								bindingPath: '/ID'
+							}">
+					</zlib:MultiInput>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem
+					groupName="firstGroup"
+					name="LOG_ID"
+					label="{i18n>LOG_ID}"
+					visibleInFilterBar="true">
+				<fb:control>
+					<zlib:MultiInput 
+							valueHelpTitle="{i18n>LOG_ID}"
+							valueHelpKey="LOG_ID"
+							valueHelpKeyType="string"
+							valueHelpDescriptionKey="{i18n>LOG_ID}"
+							beforeOpen="._prepareSelectionModel"
+							listPath="/LOG_ID"
+							tokensBindingInfo="{
+								modelName: 'filterModel',
+								bindingPath: '/LOG_ID'
+							}">
+					</zlib:MultiInput>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem
+					groupName="firstGroup"
+					name="KOKRS"
+					label="{i18n>KOKRS}"
+					visibleInFilterBar="true">
+				<fb:control>
+					<zlib:MultiInput 
+							valueHelpTitle="{i18n>KOKRS}"
+							valueHelpKey="KOKRS_TEXT"
+							valueHelpKeyType="string"
+							valueHelpDescriptionKey="{i18n>KOKRS}"
+							beforeOpen="._prepareSelectionModel"
+							listPath="/KOKRS_TEXT"
+							tokensBindingInfo="{
+								modelName: 'filterModel',
+								bindingPath: '/KOKRS_TEXT'
+							}">
+					</zlib:MultiInput>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem
+					groupName="firstGroup"
+					name="BUKRS"
+					label="{i18n>BUKRS}"
+					visibleInFilterBar="true">
+				<fb:control>
+					<zlib:MultiInput 
+							valueHelpTitle="{i18n>BUKRS}"
+							valueHelpKey="BUKRS_TEXT"
+							valueHelpKeyType="string"
+							valueHelpDescriptionKey="{i18n>BUKRS}"
+							beforeOpen="._prepareSelectionModel"
+							listPath="/BUKRS_TEXT"
+							tokensBindingInfo="{
+								modelName: 'filterModel',
+								bindingPath: '/BUKRS_TEXT'
+							}">
+					</zlib:MultiInput>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem
+					groupName="firstGroup"
+					name="ORG_UNIT"
+					label="{i18n>ORG_UNIT}"
+					visibleInFilterBar="true">
+				<fb:control>
+					<zlib:MultiInput 
+							valueHelpTitle="{i18n>ORG_UNIT}"
+							valueHelpKey="ORG_UNIT_TEXT"
+							valueHelpKeyType="string"
+							valueHelpDescriptionKey="{i18n>ORG_UNIT}"
+							beforeOpen="._prepareSelectionModel"
+							listPath="/ORG_UNIT_TEXT"
+							tokensBindingInfo="{
+								modelName: 'filterModel',
+								bindingPath: '/ORG_UNIT_TEXT'
+							}">
+					</zlib:MultiInput>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem
+					groupName="firstGroup"
+					name="CR_USER"
+					label="{i18n>CR_USER}"
+					visibleInFilterBar="true">
+				<fb:control>
+					<zlib:MultiInput 
+							valueHelpTitle="{i18n>CR_USER}"
+							valueHelpKey="CR_USER_TEXT"
+							valueHelpKeyType="string"
+							valueHelpDescriptionKey="{i18n>CR_USER}"
+							beforeOpen="._prepareSelectionModel"
+							listPath="/CR_USER_TEXT"
+							tokensBindingInfo="{
+								modelName: 'filterModel',
+								bindingPath: '/CR_USER_TEXT'
+							}">
+					</zlib:MultiInput>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem
+					groupName="firstGroup"
+					name="POST"
+					label="{i18n>POST}"
+					visibleInFilterBar="true">
+				<fb:control>
+					<zlib:MultiInput 
+							valueHelpTitle="{i18n>POST}"
+							valueHelpKey="POST_TEXT"
+							valueHelpKeyType="string"
+							valueHelpDescriptionKey="{i18n>POST}"
+							beforeOpen="._prepareSelectionModel"
+							listPath="/POST_TEXT"
+							tokensBindingInfo="{
+								modelName: 'filterModel',
+								bindingPath: '/POST_TEXT'
+							}">
+					</zlib:MultiInput>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem
+					groupName="firstGroup"
+					name="DATA_OUT"
+					label="{i18n>DATA_OUT}"
+					visibleInFilterBar="true">
+				<fb:control>
+					<zlib:MultiInput 
+							valueHelpTitle="{i18n>DATA_OUT}"
+							valueHelpKey="DATA_OUT"
+							valueHelpKeyType="date"
+							rangesOnly="true"
+							valueHelpDescriptionKey="{i18n>DATA_OUT}"
+							beforeOpen="._prepareSelectionModel"
+							listPath="/DATA_OUT"
+							tokensBindingInfo="{
+								modelName: 'filterModel',
+								bindingPath: '/DATA_OUT'
+							}">
+					</zlib:MultiInput>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem
+					groupName="firstGroup"
+					name="LOCAT"
+					label="{i18n>LOCAT}"
+					visibleInFilterBar="true">
+				<fb:control>
+					<zlib:MultiInput 
+							valueHelpTitle="{i18n>LOCAT}"
+							valueHelpKey="REVISION_ID_TEXT"
+							valueHelpKeyType="string"
+							valueHelpDescriptionKey="{i18n>LOCAT}"
+							beforeOpen="._prepareSelectionModel"
+							listPath="/REVISION_ID_TEXT"
+							tokensBindingInfo="{
+								modelName: 'filterModel',
+								bindingPath: '/REVISION_ID_TEXT'
+							}">
+					</zlib:MultiInput>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem
+					groupName="firstGroup"
+					name="CNTRL_POINT"
+					label="{i18n>CNTRL_POINT}"
+					visibleInFilterBar="true">
+				<fb:control>
+					<zlib:MultiInput 
+							valueHelpTitle="{i18n>CNTRL_POINT}"
+							valueHelpKey="CNTRL_POINT_TEXT"
+							valueHelpKeyType="string"
+							valueHelpDescriptionKey="{i18n>CNTRL_POINT}"
+							beforeOpen="._prepareSelectionModel"
+							listPath="/CNTRL_POINT_TEXT"
+							tokensBindingInfo="{
+								modelName: 'filterModel',
+								bindingPath: '/CNTRL_POINT_TEXT'
+							}">
+					</zlib:MultiInput>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem
+					groupName="firstGroup"
+					name="NUM_TICK"
+					label="{i18n>NUM_TICK}"
+					visibleInFilterBar="true">
+				<fb:control>
+					<zlib:MultiInput 
+							valueHelpTitle="{i18n>NUM_TICK}"
+							valueHelpKey="NUM_TICK"
+							valueHelpKeyType="string"
+							valueHelpDescriptionKey="{i18n>NUM_TICK}"
+							beforeOpen="._prepareSelectionModel"
+							listPath="/NUM_TICK"
+							tokensBindingInfo="{
+								modelName: 'filterModel',
+								bindingPath: '/NUM_TICK'
+							}">
+					</zlib:MultiInput>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem
+					groupName="firstGroup"
+					name="EMPL"
+					label="{i18n>EMPL}"
+					visibleInFilterBar="true">
+				<fb:control>
+					<zlib:MultiInput 
+							valueHelpTitle="{i18n>EMPL}"
+							valueHelpKey="EMPL_TEXT"
+							valueHelpKeyType="string"
+							valueHelpDescriptionKey="{i18n>EMPL}"
+							beforeOpen="._prepareSelectionModel"
+							listPath="/EMPL_TEXT"
+							tokensBindingInfo="{
+								modelName: 'filterModel',
+								bindingPath: '/EMPL_TEXT'
+							}">
+					</zlib:MultiInput>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem
+					groupName="firstGroup"
+					name="POST1"
+					label="{i18n>POST1}"
+					visibleInFilterBar="true">
+				<fb:control>
+					<zlib:MultiInput 
+							valueHelpTitle="{i18n>POST1}"
+							valueHelpKey="POST1_TEXT"
+							valueHelpKeyType="string"
+							valueHelpDescriptionKey="{i18n>POST1}"
+							beforeOpen="._prepareSelectionModel"
+							listPath="/POST1_TEXT"
+							tokensBindingInfo="{
+								modelName: 'filterModel',
+								bindingPath: '/POST1_TEXT'
+							}">
+					</zlib:MultiInput>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem
+					groupName="firstGroup"
+					name="STAT_CANCEL"
+					label="{i18n>STAT_CANCEL}"
+					visibleInFilterBar="true">
+				<fb:control>
+                    <MultiComboBox
+							selectionFinish="handleSelectionFinish"
+							selectedKeys="{prodCalModel>/}" >
+						<core:Item 
+								key="true"
+								text="{i18n>yes}" />
+						<core:Item 
+								key="false"
+								text="{i18n>no}" />
+					</MultiComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem
+					groupName="firstGroup"
+					name="NUM_TICK_TYPE"
+					label="{i18n>RES_TYPE}"
+					visibleInFilterBar="true">
+				<fb:control>
+                    <MultiComboBox
+							selectionFinish="handleSelectionResTypeFinish"
+							selectedKeys="" >
+						<core:Item 
+								key="d"
+								text="{i18n>optionD}" />
+						<core:Item 
+								key="t"
+								text="{i18n>optionT}" />
+					</MultiComboBox>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem
+					groupName="firstGroup"
+					name="DATA_CANCEL"
+					label="{i18n>DATA_CANCEL}"
+					visibleInFilterBar="true">
+				<fb:control>
+					<zlib:MultiInput 
+							valueHelpTitle="{i18n>DATA_CANCEL}"
+							valueHelpKey="DATA_CANCEL"
+							valueHelpKeyType="date"
+							rangesOnly="true"
+							valueHelpDescriptionKey="{i18n>DATA_CANCEL}"
+							beforeOpen="._prepareSelectionModel"
+							listPath="/DATA_CANCEL"
+							tokensBindingInfo="{
+								modelName: 'filterModel',
+								bindingPath: '/DATA_CANCEL'
+							}">
+					</zlib:MultiInput>
+				</fb:control>
+			</fb:FilterGroupItem>
+		</fb:filterGroupItems>
+	</fb:FilterBar>
+</core:FragmentDefinition>

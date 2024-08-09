@@ -1,0 +1,408 @@
+<mvc:View
+		controllerName="by.mda.bn.ehstick_out.controller.Detail"
+		height="100%"
+		width="100%"
+		xmlns="sap.m"
+		xmlns:l="sap.ui.layout"
+		xmlns:f="sap.ui.layout.form"
+		xmlns:t="sap.ui.table"
+		xmlns:ff="sap.f"
+		xmlns:dnd="sap.ui.core.dnd"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:core="sap.ui.core">
+	<ff:DynamicPage
+			showFooter="{
+				path: 'configModel>/mode',
+				formatter: '.formatter.displayNotForView'				
+			}"
+			busy="{
+				path: 'configModel>/busyCounter',
+				formatter: '.formatter.displayBusy'
+			}">
+		<ff:title>
+			<ff:DynamicPageTitle>
+				<ff:heading>
+					<Title
+							id="idDetailPageHeaderTitle"
+							text="{
+								parts: [
+									{
+										path: 'configModel>/mode'
+									},
+									{
+										path: 'detail>/ID'
+									},
+									{
+										path: 'detail>/NUM_TICK'
+									}
+								],
+								formatter: '.formatPageHeaderTitle'
+							}" />
+				</ff:heading>
+			</ff:DynamicPageTitle>
+		</ff:title>
+		<ff:content>
+			<f:Form
+					id="idTicketForm"
+					editable="true">
+				<f:layout>
+					<f:ResponsiveGridLayout
+						labelSpanXL="4"
+						labelSpanL="4"
+						labelSpanM="12"
+						labelSpanS="12"
+						adjustLabelSpan="false"
+						emptySpanXL="0"
+						emptySpanL="0"
+						emptySpanM="0"
+						emptySpanS="0"
+						columnsXL="2"
+						columnsL="2"
+						columnsM="1"
+						singleContainerFullSize="false" />
+				</f:layout>
+				<f:formContainers>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement>
+								<f:label>
+									<Label
+											required="true"
+											text="{i18n>detail6}" />
+								</f:label>
+								<f:fields>
+									<DatePicker
+											editable="false"
+											value="{
+												formatOptions: {
+													'pattern': 'dd.MM.yyyy'
+												},
+												path: 'detail>/CREATE_DATA',
+												type: 'sap.ui.model.type.Date'
+											}" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement
+									visible="{= ${detail>/LOG_ID} === '' ? false : true }">
+								<f:label>
+									<Label
+											required="true"
+											text="{i18n>detail10}" />
+								</f:label>
+								<f:fields>
+									<Input
+											editable="false"
+											showSuggestion="true"
+											showValueHelp="true"
+											value="{detail>/LOG_ID}"
+											valueHelpOnly="true"
+											valueHelpRequest="onLogIdValueHelp" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label
+											required="true"
+											text="{i18n>detail8}" />
+								</f:label>
+								<f:fields>
+									<Input
+											editable="{= ${configModel>/mode} === 'view' &#124;&#124; ${detail>/ORG_UNIT} === '' &#124;&#124; ${configModel>/fromOutside} &#124;&#124; ${configModel>/mode} === 'edit' ? false : true }"
+											showSuggestion="true"
+											showValueHelp="true"
+											value="{detail>/REVISION_ID_TEXT}"
+											valueHelpOnly="true"
+											valueHelpRequest="onLocatValueHelp" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label
+											required="true"
+											text="{i18n>detail9}" />
+								</f:label>
+								<f:fields>
+									<Input
+											editable="{= ${configModel>/mode} === 'view' &#124;&#124; ${detail>/LOCAT} === '' &#124;&#124; ${configModel>/fromOutside} &#124;&#124; ${configModel>/mode} === 'edit' ? false : true }"
+											showSuggestion="true"
+											showValueHelp="true"
+											value="{detail>/CNTRL_POINT_TEXT}"
+											valueHelpOnly="true"
+											valueHelpRequest="onCntrlPointValueHelp" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement
+									visible="true">
+								<f:label>
+									<Label
+											text="{i18n>detail19}" />
+								</f:label>
+								<f:fields>
+									<Select
+											change="onSelectionOption"
+											editable="false"
+											selectedKey="{= ${detail>/NUM_TICK} === '' ? 'optionD' : 'optionT' }">
+										<items>
+											<core:Item
+													key="optionT"
+													text="{i18n>optionT}" />
+											<core:Item
+													text="{i18n>optionD}"
+													key="optionD" />
+										</items>
+									</Select>
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement
+									visible="{= ${detail>/NUM_TICK} === '' ? false : true }">
+								<f:label>
+									<Label
+											text="{i18n>NUM_TICK}" />
+								</f:label>
+								<f:fields>
+									<Select
+											editable="{= ${configModel>/mode} === 'view' &#124;&#124; ${configModel>/mode} === 'edit' ? false : true }"
+											forceSelection="false"
+											selectedKey="{detail>/NUM_TICK}"
+											items="{tickets>/}">
+										<core:Item
+												key="{tickets>KEY}"
+												text="{tickets>VALUE}" />
+									</Select>
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement>
+								<f:label>
+									<Label
+											required="true"
+											text="{i18n>detail1}" />
+								</f:label>
+								<f:fields>
+									<Input
+											editable="false"
+											showSuggestion="true"
+											showValueHelp="true"
+											value="{detail>/KOKRS_TEXT}"
+											valueHelpOnly="true"
+											valueHelpRequest="onKokrsValueHelp" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label
+											required="true"
+											text="{i18n>detail2}" />
+								</f:label>
+								<f:fields>
+									<Input
+											editable="false"
+											showSuggestion="true"
+											showValueHelp="true"
+											value="{detail>/BUKRS_TEXT}"
+											valueHelpOnly="true"
+											valueHelpRequest="onBukrsValueHelp" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label
+											required="true"
+											text="{i18n>detail3}" />
+								</f:label>
+								<f:fields>
+									<Input
+											editable="false"
+											showSuggestion="true"
+											showValueHelp="true"
+											value="{detail>/ORG_UNIT_TEXT}"
+											valueHelpOnly="true"
+											valueHelpRequest="onOrgUnitValueHelp" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label
+											required="true"
+											text="{i18n>detail13}" />
+								</f:label>
+								<f:fields>
+									<Input
+											editable="false"
+											showSuggestion="true"
+											showValueHelp="true"
+											value="{detail>/POST1_TEXT}"
+											valueHelpOnly="true"
+											valueHelpRequest="onPost1ValueHelp" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label
+											required="true"
+											text="{i18n>detail12}" />
+								</f:label>
+								<f:fields>
+									<Input
+											showSuggestion="true"
+											showValueHelp="true"
+											valueHelpOnly="true"
+											valueHelpRequest="onCrUserValueHelp"
+											editable="false"
+											value="{detail>/CR_USER_TEXT}" />
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement>
+								<f:label>
+									<Label
+											required="true"
+											text="{i18n>detail11}" />
+								</f:label>
+								<f:fields>
+									<DatePicker
+											change="onDataOutChange"
+											minDate="{detail>/CREATE_DATA}"
+											editable="{= ${configModel>/mode} !== 'view' }"
+											value="{
+												formatOptions: {
+													'pattern': 'dd.MM.yyyy'
+												},
+												path: 'detail>/DATA_OUT',
+												type: 'sap.ui.model.type.Date'
+											}" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label
+											required="true"
+											text="{i18n>detail5}" />
+								</f:label>
+								<f:fields>
+									<Input
+											showSuggestion="true"
+											showValueHelp="true"
+											valueHelpOnly="true"
+											valueHelpRequest="onEmplValueHelp"
+											editable="{= ${configModel>/mode} === 'view' &#124;&#124; ${detail>/ORG_UNIT} === '' &#124;&#124; ${configModel>/mode} === 'edit' ? false : true }"
+											value="{detail>/EMPL_TEXT}" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label
+											required="true"
+											text="{i18n>detail4}" />
+								</f:label>
+								<f:fields>
+									<Input
+											editable="false"
+											showSuggestion="true"
+											showValueHelp="true"
+											value="{detail>/POST_TEXT}"
+											valueHelpOnly="true"
+											valueHelpRequest="onPostValueHelp" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label
+											required="false"
+											text="{i18n>detail14}" />
+								</f:label>
+								<f:fields>
+									<TextArea
+											maxLength="255"
+											growing="true"
+											editable="{= ${configModel>/mode} !== 'view' }"
+											value="{detail>/TAKME}" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement>
+								<f:label>
+									<Label
+											required="true"
+											text="{i18n>detail15}" />
+								</f:label>
+								<f:fields>
+									<TextArea
+											maxLength="255"
+											growing="true"
+											editable="{= ${configModel>/mode} !== 'view' }"
+											value="{detail>/COMM}" />
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+					<f:FormContainer>
+						<f:formElements>
+							<f:FormElement
+									visible="{= ${configModel>/mode} === 'create' ? false : true }">
+								<f:label>
+									<Label
+											text="{i18n>detail16}" />
+								</f:label>
+								<f:fields>
+									<CheckBox
+											selected="{detail>/STAT_CANCEL}"
+											editable="{= ${configModel>/mode} === 'view' &#124;&#124; ${detail>/DATA_OUT} === '' ? false : true }" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement
+									visible="{= ${configModel>/mode} === 'create' ? false : true }">
+								<f:label>
+									<Label
+											text="{i18n>detail17}" />
+								</f:label>
+								<f:fields>
+									<DatePicker
+											minDate="{detail>/DATA_OUT}"
+											editable="{= ${configModel>/mode} === 'view' &#124;&#124; ${detail>/DATA_OUT} === '' ? false : true }"
+											value="{
+												formatOptions: {
+													'pattern': 'dd.MM.yyyy'
+												},
+												path: 'detail>/DATA_CANCEL',
+												type: 'sap.ui.model.type.Date'
+											}" />
+								</f:fields>
+							</f:FormElement>
+							<f:FormElement
+									visible="{= ${configModel>/mode} === 'create' ? false : true }">
+								<f:label>
+									<Label
+											text="{i18n>detail18}" />
+								</f:label>
+								<f:fields>
+									<TextArea
+											maxLength="255"
+											growing="true"
+											editable="{= ${configModel>/mode} === 'view' &#124;&#124; ${detail>/DATA_OUT} === '' ? false : true }"
+											value="{detail>/COMM_CANCEL}" />
+								</f:fields>
+							</f:FormElement>
+						</f:formElements>
+					</f:FormContainer>
+				</f:formContainers>
+			</f:Form>
+		</ff:content>
+		<ff:footer>
+			<OverflowToolbar>
+				<ToolbarSpacer />	
+				<ToolbarSpacer />
+				<Button
+						icon="sap-icon://save"
+						text="{i18n>btnSave}"
+						tooltip="{i18n>btnSave}"
+						press="onPressSave" />	
+			</OverflowToolbar>
+		</ff:footer>
+	</ff:DynamicPage>
+</mvc:View>

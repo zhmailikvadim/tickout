@@ -1,0 +1,102 @@
+{
+	"_version": "0.0.1",
+	"sap.app": {
+		"id": "by.mda.bn.ehstick_out",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		}
+	},
+	"sap.ui": {
+		"fullWidth": true,
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"config": {
+			"sapFiori2Adaptation": true 
+		},
+		"services" : {
+			"BnShellUIService": {
+				"factoryName": "sap.ushell.ui5service.ShellUIService"
+			}
+		},
+		"rootView": {
+			"viewName": "by.mda.bn.ehstick_out.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.71.55",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"by.mda.bn.z_ehs_library_1": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "by.mda.bn.ehstick_out.i18n.i18n",
+					"supportedLocales": [
+						""
+					],
+					"fallbackLocale": ""
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"type": "View",
+				"viewType": "XML",
+				"fullWidth": true,
+				"async": true,
+				"viewPath": "by.mda.bn.ehstick_out.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"clearControlAggregation": false
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "Main",
+					"target": "Main"
+				},
+				{
+					"pattern": "detail/{mode}/{id}/:point:/:isTalon:",
+					"name": "Detail",
+					"target": "Detail"
+				}
+			],
+			"targets": {
+				"Main": {
+					"id": "main",
+					"viewName": "Main",
+					"viewType": "XML"
+				},
+				"Detail": {
+					"id": "detail",
+					"viewName": "Detail",
+					"viewType": "XML"
+				}
+			}
+		}
+	}
+}

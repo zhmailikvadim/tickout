@@ -1,0 +1,52 @@
+<core:FragmentDefinition
+		xmlns="sap.m"
+		xmlns:l="sap.ui.layout"
+		xmlns:core="sap.ui.core"
+		xmlns:t="sap.ui.table"
+		xmlns:f="sap.ui.layout.form">
+	<Dialog
+			title="{i18n>orgTitleOrgUnit}"
+			draggable="true"
+			contentHeight="350px"
+			contentWidth="60%"
+			resizable="false">
+		<customHeader>
+		</customHeader>
+		<content>
+			<t:TreeTable
+					id="idOrgUnitTreeTable"
+					columnHeaderVisible="false"
+					selectionMode="Single"
+					selectionBehavior="RowOnly"
+					rowSelectionChange="onUnitSelectionChange"
+					rows="{
+						path: 'orgDataTree>/',
+						parameters : {
+							arrayNames: ['childs']
+						}
+					}">
+				<t:columns>
+					<t:Column
+							width="150px">
+						<t:template>
+							<Text
+									text="{orgDataTree>ID}" />
+						</t:template>
+					</t:Column>
+					<t:Column>
+						<t:template>
+							<Text
+									text="{orgDataTree>VAL}" />
+						</t:template>
+					</t:Column>
+				</t:columns>
+			</t:TreeTable>
+		</content>
+		<buttons>
+			<Button
+					press="onCloseUnitSelectionDialog"
+					text="{i18n>btnClose}"
+					type="Transparent" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

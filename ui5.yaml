@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "2.6"
+metadata:
+  name: by.mda.bn.ehstick_out
+type: application

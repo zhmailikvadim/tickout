@@ -1,0 +1,19 @@
+{
+  "name": "ehsm_ehstick_out",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "ui5 build --config=ui5.yaml --clean-dest --dest dist --exclude-task=escapeNonAsciiCharacters"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://YUlasenka@erp-git.gomel.iba.by/belarusoil/frontend/ehstick_out.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ui5/cli": "^2.14.19"
+  }
+}

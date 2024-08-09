@@ -1,0 +1,429 @@
+<mvc:View
+		controllerName="by.mda.bn.ehstick_out.controller.Main"
+		height="100%"
+		width="100%"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:f="sap.f"
+		xmlns="sap.m"
+		xmlns:core="sap.ui.core"
+		xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+		xmlns:t="sap.ui.table">
+	<f:DynamicPage
+			busy="{
+				path: 'configModel>/busyCounter',
+				formatter: '.formatter.displayBusy'
+			}">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title
+							id="idMainPageTitle"
+							text="{i18n>pageHeader}" />
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader
+					pinnable="false">
+				<core:Fragment 
+						id="idFilterBar"
+						fragmentName="by.mda.bn.ehstick_out.fragment.filterBar"
+						type="XML" />
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<VBox
+					fitContainer="true">
+				<t:Table
+						id="idMainTable"
+						visibleRowCountMode="Auto"
+						rows="{data>/}"
+						width="auto"
+						columnSelect="onContext"
+						rowSelectionChange="onRowChange"
+						selectionBehavior="RowOnly"
+						selectionMode="Single">
+					<t:layoutData>
+						<FlexItemData
+								growFactor="1"/>
+					</t:layoutData>
+					<t:toolbar>
+						<OverflowToolbar>
+							<Button
+									id="idViewButton"
+									type="Ghost"
+									icon="sap-icon://display"
+									tooltip="{i18n>tableHeaderButtonView}"
+									text="{i18n>tableHeaderButtonView}"
+									press="onViewButtonPress" />
+							<Button
+									id="idEditButton"
+									type="Ghost"
+									icon="sap-icon://edit"
+									tooltip="{i18n>tableHeaderButtonEdit}"
+									text="{i18n>tableHeaderButtonEdit}"
+									press="onEditButtonPress" />
+							<ToolbarSpacer/>
+							<ToolbarSpacer/> 
+							<Button
+									id="idSortColumns"
+									icon="sap-icon://sort"
+									press="onOpenSortDialogPress">
+								<dependents>
+									<P13nDialog
+											ok="onSortDialogOkPress"
+											cancel="onSortDialogCancelPress"
+											reset="onSortDialogResetPress"
+											afterClose="onSortDialogAfterClose"
+											showReset="true"
+											showResetEnabled="true">
+										<panels>
+											<P13nSortPanel
+													type="sort"
+													containerQuery="true"
+													items="{sortModel>/columns}">
+												<items>
+													<P13nItem
+															columnKey="{sortModel>columnKey}"
+															text="{sortModel>text}">
+													</P13nItem>
+												</items>
+											</P13nSortPanel>
+										</panels>
+									</P13nDialog>
+								</dependents>
+							</Button>
+						</OverflowToolbar>
+					</t:toolbar>
+					<t:columns>
+						<t:Column
+								sortProperty="CREATE_DATA"
+								cd:prop="CREATE_DATA"
+								hAlign="Center"
+								tooltip="{i18n>CREATE_DATA}"
+								width="6rem">
+							<Label
+									design="Bold"
+									wrapping="true"
+									textAlign="Center"
+									text="{i18n>CREATE_DATA}" />
+							<t:template>
+								<Text
+										maxLines="2"
+										text="{
+											path: 'data>CREATE_DATA',
+											formatter: '.formatter.formatUtcDate'
+										}" />
+							</t:template>
+						</t:Column>
+						<t:Column
+								sortProperty="ID"
+								cd:prop="ID"
+								hAlign="Center"
+								tooltip="{i18n>ID}"
+								width="5rem">
+							<Label
+									design="Bold"
+									wrapping="true"
+									textAlign="Center"
+									text="{i18n>ID}" />
+							<t:template>
+								<Text
+										maxLines="2"	
+										text="{data>ID}" />
+							</t:template>
+						</t:Column>
+						<t:Column
+								sortProperty="LOG_ID"
+								cd:prop="LOG_ID"
+								hAlign="Center"
+								tooltip="{i18n>LOG_ID}"
+								width="7rem">
+							<Label
+									design="Bold"
+									wrapping="true"
+									textAlign="Center"
+									text="{i18n>LOG_ID}" />
+							<t:template>
+								<Link
+										text="{
+											path: 'data>LOG_ID',
+											formatter: '.formatter.formattId'
+										}"
+										press="onNavigate" />
+							</t:template>
+						</t:Column>
+						<t:Column
+								sortProperty="KOKRS_TEXT"
+								cd:prop="KOKRS_TEXT"
+								hAlign="Center"
+								tooltip="{i18n>KOKRS}"
+								width="13rem">
+							<Label
+									design="Bold"
+									wrapping="true"
+									textAlign="Center"
+									text="{i18n>KOKRS}" />
+							<t:template>
+								<Text
+										maxLines="2"
+										text="{data>KOKRS_TEXT}" />
+							</t:template>
+						</t:Column>
+						<t:Column
+								sortProperty="BUKRS_TEXT"
+								cd:prop="BUKRS_TEXT"
+								hAlign="Center"
+								tooltip="{i18n>BUKRS}"
+								width="7rem">
+							<Label
+									design="Bold"
+									wrapping="true"
+									textAlign="Center"
+									text="{i18n>BUKRS}" />
+							<t:template>
+								<Text
+										maxLines="2"
+										text="{data>BUKRS_TEXT}" />
+							</t:template>
+						</t:Column>
+						<t:Column
+								sortProperty="ORG_UNIT_TEXT"
+								cd:prop="ORG_UNIT_TEXT"
+								hAlign="Center"
+								tooltip="{i18n>ORG_UNIT}"
+								width="15rem">
+							<Label
+									design="Bold"
+									wrapping="true"
+									textAlign="Center"
+									text="{i18n>ORG_UNIT}" />
+							<t:template>
+								<Text
+										maxLines="2"
+										text="{data>ORG_UNIT_TEXT}" />
+							</t:template>
+						</t:Column>
+						<t:Column
+								sortProperty="EMPL_TEXT"
+								cd:prop="EMPL_TEXT"
+								hAlign="Center"
+								tooltip="{i18n>EMPL}"
+								width="10rem">
+							<Label
+									design="Bold"
+									wrapping="true"
+									textAlign="Center"
+									text="{i18n>EMPL}" />
+							<t:template>
+								<Text
+										maxLines="2"
+										text="{data>EMPL_TEXT}" />
+							</t:template>
+						</t:Column>
+						<t:Column
+								sortProperty="POST_TEXT"
+								cd:prop="POST_TEXT"
+								hAlign="Center"
+								tooltip="{i18n>POST}"
+								width="15rem">
+							<Label
+									design="Bold"
+									wrapping="true"
+									textAlign="Center"
+									text="{i18n>POST}" />
+							<t:template>
+								<Text
+										maxLines="2"
+										text="{data>POST_TEXT}" />
+							</t:template>
+						</t:Column>
+						<t:Column
+								sortProperty="DATA_OUT"
+								cd:prop="DATA_OUT"
+								hAlign="Center"
+								tooltip="{i18n>DATA_OUT}"
+								width="6rem">
+							<Label
+									design="Bold"
+									wrapping="true"
+									textAlign="Center"
+									text="{i18n>DATA_OUT}" />
+							<t:template>
+								<Text
+										maxLines="2"
+										text="{
+											path: 'data>DATA_OUT',
+											formatter: '.formatter.formatUtcDate'
+										}" />
+							</t:template>
+						</t:Column>
+						<t:Column
+								sortProperty="REVISION_ID_TEXT"
+								cd:prop="REVISION_ID_TEXT"
+								hAlign="Center"
+								tooltip="{i18n>LOCAT}"
+								width="15rem">
+							<Label
+									design="Bold"
+									wrapping="true"
+									textAlign="Center"
+									text="{i18n>LOCAT}" />
+							<t:template>
+								<Text
+										maxLines="2"
+										text="{data>REVISION_ID_TEXT}" />
+							</t:template>
+						</t:Column>
+						<t:Column
+								sortProperty="CNTRL_POINT_TEXT"
+								cd:prop="CNTRL_POINT_TEXT"
+								hAlign="Center"
+								tooltip="{i18n>CNTRL_POINT}"
+								width="20rem">
+							<Label
+									design="Bold"
+									wrapping="true"
+									textAlign="Center"
+									text="{i18n>CNTRL_POINT}" />
+							<t:template>
+								<Text
+										maxLines="2"
+										text="{data>CNTRL_POINT_TEXT}" />
+							</t:template>
+						</t:Column>
+						<t:Column
+								sortProperty="CTRL_COMMENT"
+								cd:prop="CTRL_COMMENT"
+								hAlign="Center"
+								tooltip="{i18n>CTRL_COMMENT}"
+								width="20rem">
+							<Label
+									design="Bold"
+									wrapping="true"
+									textAlign="Center"
+									text="{i18n>CTRL_COMMENT}" />
+							<t:template>
+								<Text
+										maxLines="2"
+										text="{data>CTRL_COMMENT}" />
+							</t:template>
+						</t:Column>						
+						<t:Column
+								sortProperty="NUM_TICK"
+								cd:prop="NUM_TICK"
+								hAlign="Center"
+								tooltip="{i18n>NUM_TICK}"
+								width="5rem">
+							<Label
+									design="Bold"
+									wrapping="true"
+									textAlign="Center"
+									text="{i18n>NUM_TICK}" />
+							<t:template>
+								<Text
+										maxLines="2"
+										text="{data>NUM_TICK}" />
+							</t:template>
+						</t:Column>
+						<t:Column
+								hAlign="Center"
+								tooltip="{i18n>RES_TYPE}"
+								width="10rem">
+							<Label
+									design="Bold"
+									wrapping="true"
+									textAlign="Center"
+									text="{i18n>RES_TYPE}" />
+							<t:template>
+								<Text
+										maxLines="2"
+										text="{
+											path: 'data>NUM_TICK',
+											formatter: '.formatRespType'
+										}" />
+							</t:template>
+						</t:Column>
+						<t:Column
+								sortProperty="CR_USER_TEXT"
+								cd:prop="CR_USER_TEXT"
+								hAlign="Center"
+								tooltip="{i18n>CR_USER}"
+								width="10rem">
+							<Label
+									design="Bold"
+									wrapping="true"
+									textAlign="Center"
+									text="{i18n>CR_USER}" />
+							<t:template>
+								<Text
+										maxLines="2"
+										text="{data>CR_USER_TEXT}" />
+							</t:template>
+						</t:Column>
+						<t:Column
+								sortProperty="POST1_TEXT"
+								cd:prop="POST1_TEXT"
+								hAlign="Center"
+								tooltip="{i18n>POST1}"
+								width="15rem">
+							<Label
+									design="Bold"
+									wrapping="true"
+									textAlign="Center"
+									text="{i18n>POST1}" />
+							<t:template>
+								<Text
+										maxLines="2"
+										text="{data>POST1_TEXT}" />
+							</t:template>
+						</t:Column>
+						<t:Column
+								sortProperty="STAT_CANCEL"
+								cd:prop="STAT_CANCEL"
+								hAlign="Center"
+								tooltip="{i18n>STAT_CANCEL}"
+								width="5rem">
+							<Label
+									design="Bold"
+									wrapping="true"
+									textAlign="Center"
+									text="{i18n>STAT_CANCEL}" />
+							<t:template>
+								<core:Icon 
+										color="{
+											path: 'data>STAT_CANCEL',
+											formatter: '.formatter.formatColor'											
+										}"
+										src="{
+											path: 'data>STAT_CANCEL',
+											formatter: '.formatter.formatMark'
+										}" />
+							</t:template>
+						</t:Column>
+						<t:Column
+								sortProperty="DATA_CANCEL"
+								cd:prop="DATA_CANCEL"
+								hAlign="Center"
+								tooltip="{i18n>DATA_CANCEL}"
+								width="6rem">
+							<Label
+									design="Bold"
+									wrapping="true"
+									textAlign="Center"
+									text="{i18n>DATA_CANCEL}" />
+							<t:template>
+								<Text
+										maxLines="2"
+										text="{
+											path: 'data>DATA_CANCEL',
+											formatter: '.formatter.formatUtcDate'
+										}" />
+							</t:template>
+						</t:Column>
+					</t:columns>
+				</t:Table>
+			</VBox>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

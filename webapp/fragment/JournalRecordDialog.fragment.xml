@@ -1,0 +1,48 @@
+<core:FragmentDefinition
+		xmlns="sap.m"
+		xmlns:core="sap.ui.core">
+	<TableSelectDialog
+			contentHeight="60%"
+			contentWidth="60%"
+			resizable="true"
+			title="{i18n>journalTitle}"
+			liveChange="onJournalSearch"
+			confirm="onJournalRecordsValueHelpClose"
+			cancel="onJournalRecordsValueHelpClose"
+			items="{
+				path: 'journalRecords>/'
+			}">
+		<columns>
+			<Column
+					width="200px">
+				<header>
+					<Text
+							text="{i18n>journalId}" />
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text
+							text="{i18n>journalCreateDate}" />
+				</header>
+			</Column>
+			<Column>
+				<header>
+					<Text
+							text="{i18n>journalControlDate}" />
+				</header>
+			</Column>
+		</columns>
+		<ColumnListItem>
+			<cells>
+				<Label
+						design="Bold"
+						text="{journalRecords>ID}" />
+				<Text
+						text="{journalRecords>CREATE_DATA}" />
+				<Text
+						text="{journalRecords>CONTR_DATA}" />
+			</cells>
+		</ColumnListItem>
+	</TableSelectDialog>
+</core:FragmentDefinition>

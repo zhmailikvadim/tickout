@@ -1,0 +1,11 @@
+<mvc:View
+		controllerName="by.mda.bn.ehstick_out.controller.App"
+		xmlns="sap.m"
+		xmlns:mvc="sap.ui.core.mvc"
+		displayBlock="true">
+	<Shell
+			appWidthLimited="false">
+		<App
+				id="app" />
+	</Shell>
+</mvc:View>
