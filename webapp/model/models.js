@@ -72,6 +72,7 @@ sap.ui.define([
 				REVISION_ID: "",
 				REVISION_ID_TEXT: "",
 				STAT_CANCEL: false,
+				UUID: "",
 				TAKME: ""
 			};
 		},

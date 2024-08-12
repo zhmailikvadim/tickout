@@ -80,7 +80,7 @@
 					"target": "Main"
 				},
 				{
-					"pattern": "detail/{mode}/{id}/:point:/:isTalon:",
+					"pattern": "detail/{mode}/{id}/:point:/:isTalon:/:uuid:",
 					"name": "Detail",
 					"target": "Detail"
 				}

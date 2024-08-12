@@ -157,7 +157,7 @@ sap.ui.define([
 			oDetail.POST1_TEXT = oUserData.PLANS_TEXT;
 		},
 
-		_handleCreate: async function (sId, sPointId, sTalon) {
+		_handleCreate: async function (sId, sPointId, sTalon, UUID) {
 			const oDetail = models.createDetailModel();
 			this.setModel(new JSONModel(oDetail), "detail");
 
@@ -176,7 +176,7 @@ sap.ui.define([
 					const oJournalRecord = this.parseItem(await this.fetchDataWithoutBaseUrl(`/zehs/zapi_task_exec/preventive_journal?id=${sId}`),
 						this.getText("errorLoadJournalRecordById", [sId]));
 	
-					this._mergeRecord(oJournalRecord, sPointId, sTalon);
+					this._mergeRecord(oJournalRecord, sPointId, sTalon, UUID);
 					this.setModelProperty("configModel", "/fromOutside", true);
 				} else {
 					this.setModel(new JSONModel(oDetail), "detail");
@@ -276,7 +276,7 @@ sap.ui.define([
 			oEvent.getSource().getBinding("items").filter([oFilter]);
 		},
 
-		_mergeRecord: function (oRecord, sPointId, sTalon) {
+		_mergeRecord: function (oRecord, sPointId, sTalon, UUID) {
 			const oDetailModel = this.getModel("detail");
 			const oDetailData = oDetailModel.getData();
 
@@ -295,7 +295,7 @@ sap.ui.define([
 			oDetailData.POST1 = oRecord.PLANS_TEXT.KEY;
 			oDetailData.POST1_TEXT = oRecord.PLANS_TEXT.VALUE;
 
-			const oPoint = oRecord.CONTROL_POINTS.find(oPoint => oPoint.CNTRL_POINT == sPointId);
+			const oPoint = oRecord.CONTROL_POINTS.find(oPoint => oPoint.CNTRL_POINT == sPointId && oPoint.UUID == UUID );
 
 			if (!oPoint) {
 				throw new Error(this.getText("errorNotFoundPoint", [sPointId]));
@@ -306,6 +306,7 @@ sap.ui.define([
 			};
 
 			oDetailData.CNTRL_POINT = oPoint.CNTRL_POINT;
+			oDetailData.UUID= oPoint.UUID;
 			const sText = oPoint.CONTROL_POINT.VALUE ? oPoint.CONTROL_POINT.VALUE : oPoint.CNTRL_POINT;
 			oDetailData.CNTRL_POINT_TEXT = sText;
 
@@ -346,6 +347,7 @@ sap.ui.define([
 			const sPointId = oParams.point;
 			const sTalon = oParams.isTalon
 			const sMode = oParams.mode;
+			const UUID= oParams.UUID;
 
             this._validateRouteParams(sMode, sId);
 
@@ -356,7 +358,7 @@ sap.ui.define([
             if (sMode !== constants.MODES.CREATE) {
 				this._handleEdit();
 			} else {
-				this._handleCreate(sId, sPointId, sTalon);
+				this._handleCreate(sId, sPointId, sTalon, UUID);
             };
 
 			this.getOwnerComponent().getService("BnShellUIService").then((oShellService) => {
