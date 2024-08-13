@@ -347,7 +347,7 @@ sap.ui.define([
 			const sPointId = oParams.point;
 			const sTalon = oParams.isTalon
 			const sMode = oParams.mode;
-			const UUID= oParams.UUID;
+			const sUUID= oParams.uuid;
 
             this._validateRouteParams(sMode, sId);
 
@@ -358,7 +358,7 @@ sap.ui.define([
             if (sMode !== constants.MODES.CREATE) {
 				this._handleEdit();
 			} else {
-				this._handleCreate(sId, sPointId, sTalon, UUID);
+				this._handleCreate(sId, sPointId, sTalon, sUUID);
             };
 
 			this.getOwnerComponent().getService("BnShellUIService").then((oShellService) => {
