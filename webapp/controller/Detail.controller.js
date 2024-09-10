@@ -16,7 +16,7 @@ sap.ui.define([
 ], function (Controller, ValueHelpParts, formatMessage, deepExtend, JSONModel, FilterOperator, Sorter, Filter, Fragment, History, MessageBox, formatter, models, constants) {
 	"use strict";
 
-	return Controller.extend("by.mda.bn.ehstick_out.controller.Detail", {
+	return Controller.extend("by.mda.bn.ehstick_out.controller.Detail", { 
 
 		...ValueHelpParts,
 
